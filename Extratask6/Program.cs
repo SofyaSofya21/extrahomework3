@@ -15,9 +15,9 @@ int newInd = Convert.ToInt32(Console.ReadLine());
 personalArray = AddToArray(personalArray, addNumber, newInd);
 PrintArray(personalArray);
 
-Console.Write("Введите число, которое вы хотите убрать из массива: ");
-int deleteNumber = Convert.ToInt32(Console.ReadLine());
-personalArray = RemoveFromArray(personalArray, deleteNumber);
+Console.Write($"Элемент под каким номером вы хотите убрать? (введите число от 0 до {personalArray.Length-1}) ");
+int deleteInd = Convert.ToInt32(Console.ReadLine());
+personalArray = RemoveFromArray(personalArray, deleteInd);
 PrintArray(personalArray);
 
 
@@ -63,7 +63,30 @@ int IndexOf(int[] array, int find)
 }
 
 //RemoveFromArray
-int[] RemoveFromArray(int[] array, int removeNumber)
+int[] RemoveFromArray(int[] array, int removeNumbIndex)
+{
+    int i = 0;
+    int[] arrayNew = new int[array.Length - 1];
+    for (i = 0; i < arrayNew.Length; i++)
+    {
+        if (i == removeNumbIndex)
+        {
+            for (i = i; i < arrayNew.Length; i++) // как-то тупо, может не надо j вводить?
+            {
+                arrayNew[i] = array[i + 1];
+            }
+            ;
+        }
+        else
+        {
+            arrayNew[i] = array[i];
+        }
+    }
+    return arrayNew;
+}
+
+//RemoveFromArray вариант с вводом числа
+int[] RemoveFromArrayNumber(int[] array, int removeNumber)
 {
     int i = 0;
     int[] arrayNew = new int[array.Length - 1];
@@ -76,7 +99,7 @@ int[] RemoveFromArray(int[] array, int removeNumber)
             {
                 arrayNew[i] = array[i + 1];
             }
-            break;
+            ;
         }
         else
         {
