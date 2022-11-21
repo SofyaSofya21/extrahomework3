@@ -29,19 +29,9 @@ int[] AddToArray(int[] array, int newNumber, int newPosIndex)
     int[] arrayNew = new int[array.Length + 1];
     for (i = 0; i < arrayNew.Length; i++)
     {
-        if (i == newPosIndex)
-        {
-            arrayNew[i] = newNumber;
-            for (int j = i + 1; j < arrayNew.Length; j++)
-            {
-                arrayNew[j] = array[j - 1];
-            }
-            break;
-        }
-        else
-        {
-            arrayNew[i] = array[i];
-        }
+        if (i == newPosIndex) arrayNew[i] = newNumber;
+        else if (i > newPosIndex) arrayNew[i] = array[i-1];
+        else arrayNew[i] = array[i];
     }
     return arrayNew;
 }
@@ -69,18 +59,8 @@ int[] RemoveFromArray(int[] array, int removeNumbIndex)
     int[] arrayNew = new int[array.Length - 1];
     for (i = 0; i < arrayNew.Length; i++)
     {
-        if (i == removeNumbIndex)
-        {
-            for (i = i; i < arrayNew.Length; i++) // как-то тупо, может не надо j вводить?
-            {
-                arrayNew[i] = array[i + 1];
-            }
-            ;
-        }
-        else
-        {
-            arrayNew[i] = array[i];
-        }
+        if (i >= removeNumbIndex) arrayNew[i] = array[i + 1];
+        else arrayNew[i] = array[i];
     }
     return arrayNew;
 }
@@ -93,18 +73,8 @@ int[] RemoveFromArrayNumber(int[] array, int removeNumber)
     int removePosIndex = IndexOf(array, removeNumber);
     for (i = 0; i < arrayNew.Length; i++)
     {
-        if (i == removePosIndex)
-        {
-            for (i = i; i < arrayNew.Length; i++) // как-то тупо, может не надо j вводить?
-            {
-                arrayNew[i] = array[i + 1];
-            }
-            ;
-        }
-        else
-        {
-            arrayNew[i] = array[i];
-        }
+        if (i >= removePosIndex) arrayNew[i] = array[i + 1];
+        else arrayNew[i] = array[i];
     }
     return arrayNew;
 }
