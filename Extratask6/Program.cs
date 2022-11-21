@@ -10,12 +10,14 @@ personalArray = ReadArray(personalArray.Length);
 
 Console.Write("Введите число, которое вы хотите добавить в массив: ");
 int addNumber = Convert.ToInt32(Console.ReadLine());
+int newInd = personalArray.Length;
 Console.Write($"На какую позицию добавить новый элемент? (введите число от 0 до {personalArray.Length}) ");
-int newInd = Convert.ToInt32(Console.ReadLine());
+string Ind = Console.ReadLine();
+if (Ind != "") newInd = Convert.ToInt32(Ind);
 personalArray = AddToArray(personalArray, addNumber, newInd);
 PrintArray(personalArray);
 
-Console.Write($"Элемент под каким номером вы хотите убрать? (введите число от 0 до {personalArray.Length-1}) ");
+Console.Write($"Элемент под каким номером вы хотите убрать? (введите число от 0 до {personalArray.Length - 1}) ");
 int deleteInd = Convert.ToInt32(Console.ReadLine());
 personalArray = RemoveFromArray(personalArray, deleteInd);
 PrintArray(personalArray);
@@ -30,7 +32,7 @@ int[] AddToArray(int[] array, int newNumber, int newPosIndex)
     for (i = 0; i < arrayNew.Length; i++)
     {
         if (i == newPosIndex) arrayNew[i] = newNumber;
-        else if (i > newPosIndex) arrayNew[i] = array[i-1];
+        else if (i > newPosIndex) arrayNew[i] = array[i - 1];
         else arrayNew[i] = array[i];
     }
     return arrayNew;
